@@ -1,25 +1,48 @@
-clc; 
-clear all; 
-close all; 
-choice=input('enter 1:BPSK,2:QPSK,3:MSK,4:16-QAM,5:MPSK;6:MFSK'); 
-M=16; 
-N=4; 
-SNR=25; 
-if choice<4, 
-pe=0.5*erfc(sqrt(SNR)); 
-end 
-if choice==4, 
-pe=2*erfc(sqrt(0.4*SNR)); 
-end 
-if choice==5, 
-pe=0.5*erfc(sqrt(pi*pi*SNR/16)); 
-end 
-if choice==6, 
-N=log2(M); 
-pe=erfc(sqrt(N*SNR)*sin(pi/M)); 
-end 
-if choice==7, 
-N=log2(M); 
-pe=((M-1)/2)*erfc(sqrt(N*SNR/2)); 
-end 
-Error_Probability=pe
+clc;
+clear all;
+close all;
+
+M = 16;
+N = log2(M);
+SNR = 25;
+
+while true
+    choice = input('\nEnter Modulation Choice (1:BPSK, 2:QPSK, 3:MSK, 4:16-QAM, 5:16-PSK, 6:16-FSK, 0:Exit): ');
+    
+    if choice == 0
+        printf('\nExiting program...\n');
+        break;
+    end
+
+    switch choice
+        case 1
+            printf('BPSK selected.\n');
+            pe = 0.5 * erfc(sqrt(SNR));
+
+        case 2
+            printf('QPSK selected.\n');
+            pe = 0.5 * erfc(sqrt(SNR));
+
+        case 3
+            printf('MSK selected.\n');
+            pe = 0.5 * erfc(sqrt(SNR));
+
+        case 4
+            printf('16-QAM selected.\n');
+            pe = 2 * erfc(sqrt(0.4 * SNR));
+
+        case 5
+            printf('16-PSK selected.\n');
+            pe = erfc(sqrt(SNR) * sin(pi/M));
+
+        case 6
+            printf('16-FSK selected.\n');
+            pe = ((M-1)/2) * erfc(sqrt(N * SNR / 2));
+
+        otherwise
+            printf('Invalid choice. Please enter 1–6.\n');
+            continue;
+    end
+
+    printf('Error Probability = %e\n', pe);
+end
