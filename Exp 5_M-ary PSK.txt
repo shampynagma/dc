@@ -1,0 +1,9 @@
+clc;
+clear all;
+M=16;
+X=[0:M-1];
+N=1;
+OFF=0;
+z=pskmod(X,M);
+figure(1)
+scatterplot(z,N,OFF,'r+');
