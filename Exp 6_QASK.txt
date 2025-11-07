@@ -10,39 +10,40 @@ while true
     choice = input('\nEnter Modulation Choice (1:BPSK, 2:QPSK, 3:MSK, 4:16-QAM, 5:16-PSK, 6:16-FSK, 0:Exit): ');
     
     if choice == 0
-        printf('\nExiting program...\n');
+        fprintf('\nExiting program...\n');
         break;
     end
 
     switch choice
         case 1
-            printf('BPSK selected.\n');
+            fprintf('BPSK selected.\n');
             pe = 0.5 * erfc(sqrt(SNR));
 
         case 2
-            printf('QPSK selected.\n');
+            fprintf('QPSK selected.\n');
             pe = 0.5 * erfc(sqrt(SNR));
 
         case 3
-            printf('MSK selected.\n');
+            fprintf('MSK selected.\n');
             pe = 0.5 * erfc(sqrt(SNR));
 
         case 4
-            printf('16-QAM selected.\n');
+            fprintf('16-QAM selected.\n');
             pe = 2 * erfc(sqrt(0.4 * SNR));
 
         case 5
-            printf('16-PSK selected.\n');
+            fprintf('16-PSK selected.\n');
             pe = erfc(sqrt(SNR) * sin(pi/M));
 
         case 6
-            printf('16-FSK selected.\n');
+            fprintf('16-FSK selected.\n');
             pe = ((M-1)/2) * erfc(sqrt(N * SNR / 2));
 
         otherwise
-            printf('Invalid choice. Please enter 1–6.\n');
+            fprintf('Invalid choice. Please enter 1–6.\n');
             continue;
     end
 
-    printf('Error Probability = %e\n', pe);
+    fprintf('Error Probability = %e\n', pe);
 end
+
